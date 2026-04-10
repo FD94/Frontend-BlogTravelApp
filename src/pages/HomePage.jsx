@@ -1,4 +1,24 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
+
 const HomePage = () => {
+    const [posts, setPosts] = useState([]);
+
+    const fetchPosts = async () => {
+        try {
+            const response = await axios.get("http://localhost:5005/api/posts");
+            console.log(response)
+            setPosts(response.data);
+        } catch (error) {
+            console.error("Error fetching posts", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
     return (
         <div className="min-h-screen bg-brand-light">
 
@@ -23,7 +43,32 @@ const HomePage = () => {
             <main className="max-w-3xl mx-auto px-4 py-10 md:-mt-10 relative z-10">
                 <div className="flex flex-col gap-8">
 
+                    {posts.map((post) => (
+                        <div
+                            key={post._id}
+                            className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm"
+                        >
+                            <h2 className="text-xl font-bold text-slate-800">
+                                {post.title}
+                            </h2>
 
+                            <p className="text-slate-600 mt-2">
+                                {post.description}
+                            </p>
+
+                            {post.image && (
+                                <img
+                                    src={post.image}
+                                    alt={post.title}
+                                    className="mt-4 rounded-lg"
+                                />
+                            )}
+
+                            <p className="text-xs text-slate-400 mt-3">
+                                Author: {post.author}
+                            </p>
+                        </div>
+                    ))}
 
                     <div className="flex items-center gap-4 mb-2">
                         <span className="h-px flex-1 bg-slate-200"></span>
