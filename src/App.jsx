@@ -1,12 +1,27 @@
 
-import './App.css'
+import Navbar from "./components/Navbar"
+import { Route, Routes } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import CreatePost from "./pages/CreatePost"
+import PrivateRoute from "./components/PrivateRoutes"
+import LoginPage from "./pages/LoginPage"
+import SignupPage from "./pages/SignUpPage"
+
+
 
 function App() {
 
 
   return (
     <>
-      <h1>Welcome Blog Travel...</h1>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<PrivateRoute> <CreatePost /> </PrivateRoute>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
     </>
   )
 }
