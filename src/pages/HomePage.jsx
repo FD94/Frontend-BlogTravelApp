@@ -22,10 +22,7 @@ const HomePage = () => {
 
             <main className="max-w-3xl mx-auto px-4 py-10 md:-mt-10 relative z-10">
                 <div className="flex flex-col gap-8">
-                    {/* Aquí iría tu lógica actual (ej. {posts.map(...)}) 
-                        Los componentes PostCard heredarán la consistencia 
-                        automáticamente gracias al layout de este contenedor.
-                    */}
+
 
 
                     <div className="flex items-center gap-4 mb-2">
@@ -34,9 +31,9 @@ const HomePage = () => {
                         <span className="h-px flex-1 bg-slate-200"></span>
                     </div>
 
-                    {/* Espacio reservado para los posts */}
+
                     <section className="space-y-6">
-                        {/* Tu lógica de mapeo de posts aquí */}
+
                     </section>
                 </div>
             </main>
