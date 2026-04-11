@@ -10,25 +10,31 @@ const CreatePost = () => {
 
     const navigate = useNavigate()
 
+
     const labelStyle = "block text-sm font-semibold text-slate-700 mb-1";
     const inputStyle = "w-full px-4 py-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary outline-none transition-all duration-200 placeholder:text-slate-400";
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const token = localStorage.getItem("authToken");
+
+        console.log("TOKEN:", token);
 
         const newPost = { title, description, author, image }
         try {
             const token = localStorage.getItem("authToken")
 
 
-            const response = axios.post("/posts", newPost, {
+            const response = await axios.post("http://localhost:5005/api/posts", newPost, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
+
             console.log("Post created with successfully", response.data)
             navigate("/")
         } catch (error) {
+
             console.error("Error to create the post", error)
         }
     }
@@ -53,19 +59,6 @@ const CreatePost = () => {
                             value={title}
                             onChange={(e) => { setTitle(e.target.value) }}
                             required
-                        />
-                    </div>
-
-
-                    <div>
-                        <label htmlFor="author" className={labelStyle}>Author</label>
-                        <input
-                            type="text"
-                            id="author"
-                            placeholder="Tu nombre o usuario"
-                            className={inputStyle}
-                            value={author}
-                            onChange={(e) => { setAuthor(e.target.value) }}
                         />
                     </div>
 

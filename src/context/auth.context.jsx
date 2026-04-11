@@ -10,12 +10,7 @@ function AuthProvider(props) {
     useEffect(() => {
         const token = localStorage.getItem("authToken");
 
-        if (token) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-
+        setIsLoggedIn(!!token);
         setIsLoading(false);
     }, []);
 

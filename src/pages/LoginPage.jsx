@@ -17,12 +17,24 @@ function LoginPage() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
         try {
-            const response = await axios.post("/auth/login", { email, password });
+            const response = await axios.post(
+                "http://localhost:5005/auth/login",
+                { email, password }
+            );
+
+            localStorage.getItem("authToken")
+
             logInUser(response.data.authToken);
+
+
+
             navigate("/");
         } catch (error) {
-            const errorDescription = error.response?.data?.message || "Error al iniciar sesión";
+            const errorDescription =
+                error.response?.data?.message || "Error al iniciar sesión";
+
             setErrorMessage(errorDescription);
         }
     };

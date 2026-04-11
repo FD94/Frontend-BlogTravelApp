@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 function SignupPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
 
     const { logInUser } = useContext(AuthContext);
@@ -18,7 +19,7 @@ function SignupPage() {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("/auth/signup", { email, password });
+            const response = await axios.post("http://localhost:5005/auth/signup", { email, password, name });
             const token = response.data.authToken;
             logInUser(token);
             navigate("/");
@@ -41,17 +42,27 @@ function SignupPage() {
                 <form onSubmit={handleSignup} className="space-y-6">
 
                     <div>
+                        <label className={labelStyle}>Name</label>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Name"
+                            className={inputStyle}
+                            required
+                        />
+                    </div>
+                    <div>
                         <label className={labelStyle}>Email</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="tu@ejemplo.com"
+                            placeholder="you@example.com"
                             className={inputStyle}
                             required
                         />
                     </div>
-
 
                     <div>
                         <label className={labelStyle}>Password</label>
@@ -59,11 +70,13 @@ function SignupPage() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Crea una contraseña segura"
+                            placeholder="Password"
                             className={inputStyle}
                             required
                         />
                     </div>
+
+
 
 
                     {errorMessage && (
