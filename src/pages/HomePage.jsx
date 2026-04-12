@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
@@ -8,6 +9,7 @@ const HomePage = () => {
     const [newComment, setNewComment] = useState({});
 
     const navigate = useNavigate();
+    const { isLoggedIn } = useContext(AuthContext);
 
     const fetchComments = async (postId) => {
         try {
@@ -166,44 +168,47 @@ const HomePage = () => {
                                 {post.description}
                             </p>
 
+                            {isLoggedIn && (
+                                <div className="mt-8 pt-6 border-t border-slate-100">
+                                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Comentarios</h3>
 
-                            <div className="mt-8 pt-6 border-t border-slate-100">
-                                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Comentarios</h3>
+                                    <div className="space-y-3 mb-6">
+                                        {comments[post._id]?.map((comment) => (
+                                            <div key={comment._id} className="bg-slate-50 border border-slate-100 p-3 rounded-xl shadow-sm">
+                                                <p className="text-xs font-bold text-brand-dark mb-1">
+                                                    {comment.author?.name || "Viajero anónimo"}
+                                                </p>
+                                                <p className="text-sm text-slate-600 leading-snug">{comment.text}</p>
 
-                                <div className="space-y-3 mb-6">
-                                    {comments[post._id]?.map((comment) => (
-                                        <div key={comment._id} className="bg-slate-50 border border-slate-100 p-3 rounded-xl shadow-sm">
-                                            <p className="text-xs font-bold text-brand-dark mb-1">
-                                                {comment.author?.name || "Viajero anónimo"}
-                                            </p>
-                                            <p className="text-sm text-slate-600 leading-snug">{comment.text}</p>
+                                            </div>
+                                        ))}
+                                    </div>
 
-                                        </div>
-                                    ))}
+                                    <div className="flex flex-col gap-3">
+                                        <input
+                                            type="text"
+                                            placeholder="Escribe un comentario..."
+                                            value={newComment[post._id] || ""}
+                                            onChange={(e) =>
+                                                setNewComment({
+                                                    ...newComment,
+                                                    [post._id]: e.target.value,
+                                                })
+                                            }
+                                            className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200"
+                                        />
+                                        <button
+                                            onClick={() => handleAddComment(post._id)}
+                                            className="self-end bg-brand-primary text-slate-400 text-xs font-bold px-5 py-2.5 rounded-lg shadow-md shadow-brand-primary/20 hover:bg-brand-dark hover:-translate-y-0.5 transition-all duration-200 uppercase tracking-wider"
+                                        >
+                                            Coment
+                                        </button>
+
+                                    </div>
                                 </div>
 
-                                <div className="flex flex-col gap-3">
-                                    <input
-                                        type="text"
-                                        placeholder="Escribe un comentario..."
-                                        value={newComment[post._id] || ""}
-                                        onChange={(e) =>
-                                            setNewComment({
-                                                ...newComment,
-                                                [post._id]: e.target.value,
-                                            })
-                                        }
-                                        className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200"
-                                    />
-                                    <button
-                                        onClick={() => handleAddComment(post._id)}
-                                        className="self-end bg-brand-primary text-slate-400 text-xs font-bold px-5 py-2.5 rounded-lg shadow-md shadow-brand-primary/20 hover:bg-brand-dark hover:-translate-y-0.5 transition-all duration-200 uppercase tracking-wider"
-                                    >
-                                        Coment
-                                    </button>
+                            )}
 
-                                </div>
-                            </div>
                         </div>
                     ))}
 
