@@ -29,14 +29,14 @@ const Navbar = () => {
             <nav className="max-w-5xl mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
 
-                    {/* Lado Izquierdo: Logo */}
+
                     <div className="flex-shrink-0">
                         <h1 className="text-xl font-bold text-brand-primary tracking-tight">
                             BlogTravel
                         </h1>
                     </div>
 
-                    {/* Centro: Links de Navegación */}
+
                     <div className="flex gap-4 md:gap-8 h-full">
                         <NavLink
                             to="/"
@@ -54,7 +54,7 @@ const Navbar = () => {
                         </NavLink>
                     </div>
 
-                    {/* Lado Derecho: Grupo de Usuario (Avatar + Logout) */}
+
                     <div className="flex items-center gap-3 md:gap-4">
 
                         <div className="flex items-center cursor-pointer" onClick={handleAvatarClick}>

@@ -6,7 +6,7 @@ const CreatePost = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-    const [author, setAuthor] = useState("");
+
 
     const navigate = useNavigate()
 
@@ -16,11 +16,8 @@ const CreatePost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const token = localStorage.getItem("authToken");
 
-        console.log("TOKEN:", token);
-
-        const newPost = { title, description, author, image }
+        const newPost = { title, description, image }
         try {
             const token = localStorage.getItem("authToken")
 
@@ -31,7 +28,9 @@ const CreatePost = () => {
                 }
             });
 
-            console.log("Post created with successfully", response.data)
+            setTitle(response.data.title)
+            setDescription(response.data.description)
+            setImage(response.data.image)
             navigate("/")
         } catch (error) {
 
@@ -54,7 +53,7 @@ const CreatePost = () => {
                         <input
                             type="text"
                             id="title"
-                            placeholder="Ej: Mi increíble App de React"
+                            placeholder="Title"
                             className={inputStyle}
                             value={title}
                             onChange={(e) => { setTitle(e.target.value) }}
@@ -106,7 +105,7 @@ const CreatePost = () => {
                             type="button"
                             className="flex-1 bg-white text-slate-600 font-semibold py-2.5 rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors shadow-md shadow-brand-primary/20"
                         >
-                            Cancelar
+                            Cancel
                         </button>
                     </div>
                 </form>
