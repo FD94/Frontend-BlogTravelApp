@@ -30,17 +30,21 @@ const HomePage = () => {
         const fetchPosts = async () => {
             try {
                 const response = await axios.get("http://localhost:5005/api/posts");
-                setPosts(response.data);
 
-                response.data.forEach((post) => {
-                    fetchComments(post._id)
-                })
+                const postsData = response.data;
+
+                setPosts(postsData);
+
+                postsData.forEach((post) => {
+                    fetchComments(post._id);
+                });
 
             } catch (error) {
                 console.error("Error fetching posts", error);
             }
-        }
-        fetchPosts()
+        };
+
+        fetchPosts();
     }, []);
 
 
@@ -127,7 +131,7 @@ const HomePage = () => {
 
             <main className="max-w-3xl mx-auto px-4 py-10 md:-mt-10 relative z-10">
                 <div className="flex flex-col gap-8">
-                    {posts.map((post) => (
+                    {Array.isArray(posts) && posts.map((post) => (
                         <div
                             key={post._id}
                             className="relative bg-white border border-slate-200 rounded-xl p-6 shadow-sm group"
