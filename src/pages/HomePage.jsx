@@ -166,7 +166,7 @@ const HomePage = () => {
                                 {post.description}
                             </p>
 
-                            {/* Sección de Comentarios */}
+
                             <div className="mt-8 pt-6 border-t border-slate-100">
                                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Comentarios</h3>
 
