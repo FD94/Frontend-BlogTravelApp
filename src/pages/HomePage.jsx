@@ -14,7 +14,7 @@ const HomePage = () => {
     const fetchComments = async (postId) => {
         try {
             const response = await axios.get(
-                `http://localhost:5005/api/comments/${postId}`
+                `${import.meta.env.VITE_API_URL}/api/comments/${postId}`
             );
 
             setComments((prev) => ({
@@ -29,7 +29,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get("http://localhost:5005/api/posts");
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/posts`);
 
                 const postsData = response.data;
 
@@ -56,7 +56,7 @@ const HomePage = () => {
             const token = localStorage.getItem("authToken");
 
             await axios.delete(
-                `http://localhost:5005/api/posts/${postId}`,
+                `${import.meta.env.VITE_API_URL}/api/posts/${postId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ const HomePage = () => {
             const token = localStorage.getItem("authToken");
 
             const response = await axios.post(
-                "http://localhost:5005/api/comments",
+                `${import.meta.env.VITE_API_URL}/api/comments`,
                 {
                     text: newComment[postId],
                     post: postId,

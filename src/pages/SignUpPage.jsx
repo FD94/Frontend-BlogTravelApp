@@ -19,7 +19,7 @@ function SignupPage() {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5005/auth/signup", { email, password, name });
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, { email, password, name });
             const token = response.data.authToken;
             logInUser(token);
             navigate("/");

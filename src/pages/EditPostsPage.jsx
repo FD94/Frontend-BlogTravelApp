@@ -14,7 +14,7 @@ function EditPostsPage() {
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
-        axios.get(`http://localhost:5005/api/posts/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+        axios.get(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, { headers: { Authorization: `Bearer ${token}` } })
             .then((response) => {
                 setFormDataUpdate(response.data)
             })
@@ -36,7 +36,7 @@ function EditPostsPage() {
         try {
             const token = localStorage.getItem("authToken");
 
-            await axios.put(`http://localhost:5005/api/posts/${id}`, formDataUpdate, { headers: { Authorization: `Bearer ${token}` } })
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, formDataUpdate, { headers: { Authorization: `Bearer ${token}` } })
             navigate("/")
         } catch (error) {
             console.error("Error updating post", error);
