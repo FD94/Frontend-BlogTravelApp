@@ -1,16 +1,97 @@
-# React + Vite
+# 🌍 Travel Blog App — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Demo:** [blog-travel-app.vercel.app](https://blog-travel-app.vercel.app)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📋 Project Overview
 
-## React Compiler
+Travel Blog App is a web application that allows users to share travel experiences through blog posts, explore destinations, and connect with other travelers around the world.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 👤 About the Developer
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **From:** Mallorca, Spain
+- **Hobbies:** Traveling, Photography and programming
+
+---
+
+## 🚀 Project Elevator Pitch
+
+### What is it?
+
+A full-stack travel blogging platform where users can create, read, and share travel stories with rich text, images, and location tags.
+
+### How does it work?
+
+The frontend is built with **React** and communicates with a REST API backend. Users can sign up, write posts, browse other travelers' stories, and interact with the community.
+
+### Why this project?
+
+Travel inspires connection. I wanted to build a space where explorers can document their journeys and inspire others — combining my passion for travel with my love for building things on the web.
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer            | Technology   |
+| ---------------- | ------------ |
+| Framework        | React        |
+| Styling          | Tailwind CSS |
+| State Management | Context API  |
+| HTTP Client      | Axios        |
+| Deployment       | Vercel       |
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js `>= 18.x`
+- npm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/blog-travel-app.git
+cd blog-travel-app
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+```
+
+### Running locally
+
+```bash
+npm run dev
+```
+
+Visit `http://localhost:3000`
+
+---
+
+## 🔧 Environment Variables
+
+| Variable              | Description          |
+| --------------------- | -------------------- |
+| `NEXT_PUBLIC_API_URL` | Backend API base URL |
+
+---
+
+## 🔗 Links
+
+| Resource         | URL                                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ |
+| 🌐 Live Frontend | [blog-travel-app.vercel.app](https://blog-travel-app.vercel.app)                                             |
+| 🔌 Backend API   | [my-blog-travel-app-backend.vercel.app](https://my-blog-travel-app-backend.vercel.app)                       |
+| 📁 Backend Repo  | [github.com/your-username/blog-travel-app-backend](https://github.com/your-username/blog-travel-app-backend) |
+
+---
+
+_Thank You for visiting! ✈️_
